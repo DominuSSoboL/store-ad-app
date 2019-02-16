@@ -24,7 +24,8 @@
 
     <v-toolbar app dark color="primary">
       <v-toolbar-side-icon
-        @click="drawer = !drawer">
+        @click="drawer = !drawer"
+        class="hidden-md-and-up">
       </v-toolbar-side-icon>
       <v-toolbar-title>Store ad app</v-toolbar-title>
       <v-spacer></v-spacer>
