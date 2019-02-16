@@ -8,25 +8,36 @@
               </v-toolbar>
 
               <v-card-text>
-                <v-form>
+                <v-form
+                    ref="form"
+                    v-model="valid"
+                    validation
+                >
                   <v-text-field 
                     prepend-icon="person" 
-                    name="login" 
-                    label="Login" 
-                    type="text"
+                    name="email" 
+                    label="Email" 
+                    type="email"
+                    v-model="email"
+                    
                   ></v-text-field>
                   <v-text-field
                     prepend-icon="lock" 
                     name="password" 
                     label="Password" 
+                    :counter="6"
                     type="password"
+                    v-model="password"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Login</v-btn>
+                <v-btn 
+                    color="primary"
+                    @click="onSubmit"
+                >Login</v-btn>
               </v-card-actions>
 
             </v-card>
@@ -38,7 +49,16 @@
 <script>
 export default {
     data () {
-        return {}
+        return {
+            email: '',
+            password: '',
+            valid: false,
+        }
+    },
+    methods: {
+        onSubmit () {
+
+        }
     }
 }
 </script>
