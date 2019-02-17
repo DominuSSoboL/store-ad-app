@@ -93,15 +93,14 @@ export default {
         }
     },
     methods: {
-        onSubmit () {
-          if(this.$refs.form.validate()){
-            const user = {
-              email: this.email,
-              password: this.password
-            }
-            console.log(user)
-          }
-        }
+        // onSubmit () {
+        //   if(this.$refs.form.validate()){
+        //     const user = {
+        //       email: this.email,
+        //       password: this.password
+        //     }
+        //   }
+        // }
     }
 }
 </script>
