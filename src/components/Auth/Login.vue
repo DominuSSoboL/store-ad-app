@@ -8,36 +8,44 @@
               </v-toolbar>
 
               <v-card-text>
+
                 <v-form
                     ref="form"
                     v-model="valid"
-                    validation
-                >
-                  <v-text-field 
-                    prepend-icon="person" 
-                    name="email" 
-                    label="Email" 
-                    type="email"
-                    v-model="email"
-                    
-                  ></v-text-field>
-                  <v-text-field
-                    prepend-icon="lock" 
-                    name="password" 
-                    label="Password" 
-                    :counter="6"
-                    type="password"
-                    v-model="password"
-                  ></v-text-field>
-                </v-form>
-              </v-card-text>
+                    validation>
 
+                  <v-text-field 
+                    prepend-icon="person"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    :rules="emailRules"
+                    v-model="email"                    
+                  ></v-text-field>
+
+                  <v-text-field
+                    prepend-icon="lock"
+                    v-model="password"
+                    :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                    :rules="[passwordRules.required, passwordRules.min]"
+                    :type="showPassword ? 'text' : 'password'"
+                    name="password"
+                    label="Password"
+                    hint="At least 8 characters"
+                    counter
+                    @click:append="showPassword = !showPassword"
+                  ></v-text-field>
+
+                </v-form>
+
+              </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn 
                     color="primary"
                     @click="onSubmit"
-                >Login</v-btn>
+                    :disabled="!valid">
+                Login</v-btn>
               </v-card-actions>
 
             </v-card>
@@ -52,12 +60,27 @@ export default {
         return {
             email: '',
             password: '',
+            showPassword: false,
             valid: false,
+            emailRules: [
+              v => !!v || 'E-mail is required',
+              v => /.+@.+/.test(v) || 'E-mail must be valid'
+            ],
+            passwordRules: {
+              required: v => !!v || 'Password is required',
+              min: v => v.length >= 8 || 'Min 8 characters'
+            }
         }
     },
     methods: {
         onSubmit () {
-
+          if(this.$refs.form.validate()){
+            const user = {
+              email: this.email,
+              password: this.password
+            }
+            console.log(user)
+          }
         }
     }
 }
