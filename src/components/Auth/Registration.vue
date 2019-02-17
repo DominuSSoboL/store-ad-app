@@ -10,9 +10,9 @@
               <v-card-text>
 
                 <v-form
-                    ref="form"
-                    v-model="valid"
-                    validation>
+                  ref="form"
+                  v-model="valid"
+                  validation>
 
                   <v-text-field 
                     prepend-icon="person"
@@ -28,7 +28,7 @@
                     v-model="password"
                     :append-icon="showPassword ? 'visibility_off' : 'visibility'"
                     :rules="[passwordRules.required, passwordRules.min]"
-                    :type="password ? 'text' : 'password'"
+                    :type="showPassword ? 'text' : 'password'"
                     name="password"
                     label="Password"
                     hint="At least 8 characters"
@@ -41,7 +41,7 @@
                     v-model="confirmPassword"
                     :append-icon="showConfirmPassword ? 'visibility_off' : 'visibility'"
                     :rules="[confirmPasswordRules.required, confirmPasswordRules.min, confirmPasswordRules.confirm]"
-                    :type="confirmPassword ? 'text' : 'confirmPassword'"
+                    :type="showConfirmPassword ? 'text' : 'password'"
                     name="confirm-password"
                     label="Confirm Password"
                     hint="At least 8 characters"
